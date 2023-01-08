@@ -29,9 +29,9 @@ const Home = () => {
     return dateFormat;
   };
 
-  function listItem() {
-    navigate("/Tambah-Activity");
-  }
+//   function listItem() {
+//     navigate("/Tambah-Activity");
+//   }
 
   const handlePost = () => {
     dispatch(createData());
@@ -47,7 +47,8 @@ const Home = () => {
 
 
   const handleDetail = (e) => {
-    console.log(e, '*****ID')
+    console.log(e, '*****ID');
+        
   }
 
   return (
@@ -135,7 +136,7 @@ const Home = () => {
                     onClick={handleDetail.bind(null, item.id)}
                   >
                     <Label
-                      onClick={listItem}
+                    //   onClick={listItem}
                       style={{ cursor: "pointer" }}
                       className=" mb-auto fw-bold fs-4 m-4"
                     >

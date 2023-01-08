@@ -14,6 +14,21 @@ export const listActivity = createAsyncThunk(
     }
   }
 );
+export const getDetail = createAsyncThunk(
+    "getDetail",
+    async (id, { rejectWithValue }) => {
+      try {
+        const response =
+          await services.getDetail(id);
+        console.log(response, "ini responsenya");
+        return response;
+      } catch (error) {
+        rejectWithValue(error.response);
+      }
+    }
+  );
+
+
 
 export const createData = createAsyncThunk(
   "activity-groups",
@@ -63,6 +78,8 @@ export const deleteData = createAsyncThunk(
 
 const initialState = {
   activity: [],
+  id_detail: '',
+  list_detail: [],
   postActivity: {
     title: "New Activity",
     email: "rhobbie09@gmail.com",

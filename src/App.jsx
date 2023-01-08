@@ -16,7 +16,7 @@ function App() {
         <Routes>
           < Route exact path="/" element={<Home />} />
           {/* < Route exact path="/Tambah-Activity" element={<AddTodoList />} /> */}
-          < Route exact path="/List-Items" element={<ListItems />} />
+          < Route exact path="/List-Items/:id" element={<ListItems />} />
         </Routes>
       </Col>
     </Col>

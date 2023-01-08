@@ -7,32 +7,16 @@ const api = axios.create({
 const services = {
   getList: async (idUser, document) => {
     try {
-      const response = await api.get(
-        `activity-groups?email=rhobbie09@gmail.com` /* , {
-                params: {
-                    idUser,
-                    document
-                } */
-        // }
-      );
+      const response = await api.get(`activity-groups`, {
+        params: {
+          email: "rhobbie09@gmail.com",
+        },
+      });
       return response;
     } catch (err) {
       return err;
     }
   },
-
-
-  getDetail: async (id) => {
-    try {
-      const response = await api.get(
-        `activity-groups/${id}` 
-      );
-      return response;
-    } catch (err) {
-      return err;
-    }
-  },
-
 
   postData: async (data) => {
     try {
@@ -45,7 +29,36 @@ const services = {
   },
   deleteActivity: async (id) => {
     try {
-      const response = await api.delete(`activity-groups/:id?id=${id}`);
+      const response = await api.delete(`activity-groups/${id}`);
+      console.log(response);
+      return response;
+    } catch (err) {
+      return err;
+    }
+  },
+
+  getDetail: async (id) => {
+    try {
+      const response = await api.get(`activity-groups/${id}`);
+      return response;
+    } catch (err) {
+      return err;
+    }
+  },
+
+  postDetail: async (data) => {
+    try {
+      const response = await api.post("todo-items", data);
+      console.log(response);
+      return response;
+    } catch (err) {
+      return err;
+    }
+  },
+
+  deleteDetail: async (id) => {
+    try {
+      const response = await api.delete(`todo-items/${id}`);
       console.log(response);
       return response;
     } catch (err) {
