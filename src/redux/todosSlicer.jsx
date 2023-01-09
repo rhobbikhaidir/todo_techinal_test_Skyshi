@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { swal } from "../helper/swal";
 import services from "./services";
 
 export const listActivity = createAsyncThunk(
@@ -156,8 +157,10 @@ export const DeleteDetail = createAsyncThunk(
 
     try {
       const response = await services.deleteDetail(id);
+      console.log(response, 'ini response delte')
       if (response.status === 200) {
         dispatch(getDetail(id_detail));
+        swal.success("berhasil mengahpus data");
       }
       return response.data;
     } catch (err) {

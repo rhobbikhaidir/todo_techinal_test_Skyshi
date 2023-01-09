@@ -29,7 +29,7 @@ const LandingPage = () => {
 
   useEffect(() => {
     dispatch(listActivity());
-  }, [dispatch]);
+  }, []);
 
   const formatDate = (cell, row) => {
     let dateFormat = moment(cell).format("DD MMMM YYYY");
