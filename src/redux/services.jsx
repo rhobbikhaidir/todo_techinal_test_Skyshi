@@ -5,7 +5,7 @@ const api = axios.create({
 });
 
 const services = {
-  getList: async (idUser, document) => {
+  getList: async () => {
     try {
       const response = await api.get(`activity-groups`, {
         params: {
@@ -17,7 +17,6 @@ const services = {
       return err;
     }
   },
-
   postData: async (data) => {
     try {
       const response = await api.post("activity-groups", data);
@@ -30,6 +29,15 @@ const services = {
   deleteActivity: async (id) => {
     try {
       const response = await api.delete(`activity-groups/${id}`);
+      console.log(response);
+      return response;
+    } catch (err) {
+      return err;
+    }
+  },
+  updateTitle: async (id, data) => {
+    try {
+      const response = await api.patch(`activity-groups/${id}`, data);
       console.log(response);
       return response;
     } catch (err) {
@@ -55,10 +63,18 @@ const services = {
       return err;
     }
   },
-
   deleteDetail: async (id) => {
     try {
       const response = await api.delete(`todo-items/${id}`);
+      console.log(response);
+      return response;
+    } catch (err) {
+      return err;
+    }
+  },
+  putDetail: async (id, data) => {
+    try {
+      const response = await api.patch(`todo-items/${id}`, data);
       console.log(response);
       return response;
     } catch (err) {

@@ -7,7 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, FormGroup, Label, Modal, ModalBody } from "reactstrap";
 import { DeleteIcon, HomeIcon, SuccessDelete } from "../../assets";
-import { createData, deleteData, listActivity } from "../../redux/todosSlicer";
+import {
+  createData,
+  deleteData,
+  getDetail,
+  listActivity,
+  setActivity,
+  setRedirect,
+} from "../../redux/todosSlicer";
 
 const Home = () => {
   const { activity } = useSelector((state) => state.todosSlicer);
@@ -22,16 +29,16 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(listActivity());
-  }, []);
+  }, [dispatch]);
 
   const formatDate = (cell, row) => {
     let dateFormat = moment(cell).format("DD MMMM YYYY");
     return dateFormat;
   };
 
-//   function listItem() {
-//     navigate("/Tambah-Activity");
-//   }
+  //   function listItem() {
+  //     navigate("/Tambah-Activity");
+  //   }
 
   const handlePost = () => {
     dispatch(createData());
@@ -39,17 +46,17 @@ const Home = () => {
   const handleDelete = (e) => {
     setModal(!modal);
     const tempIndex = activity.findIndex((item) => item.id === e);
-    // console.log(tempIndex, 'ini indexx cui')
     setIndexDel(tempIndex);
-
-    // console.log(id, "apakah ini e**********");
   };
 
-
   const handleDetail = (e) => {
-    console.log(e, '*****ID');
-        
-  }
+    dispatch(setActivity({ key: "id_detail", value: e }));
+    dispatch(getDetail(e));
+    const detail_title = activity.find((item) => item.id === e)
+    dispatch(setActivity({ key: "title_detail", value: detail_title.title }));
+    dispatch(setRedirect(true))
+    navigate(`/List-Items/${e}`);
+  };
 
   return (
     <Col className="container">
@@ -130,18 +137,23 @@ const Home = () => {
                     className="d-flex flex-column border border-0 rounded shadow my-2"
                     style={{
                       minHeight: "30vh",
-                      backgroundColor: "red",
-                      cursor: 'pointer'
+                      cursor: "pointer",
                     }}
-                    onClick={handleDetail.bind(null, item.id)}
                   >
-                    <Label
-                    //   onClick={listItem}
-                      style={{ cursor: "pointer" }}
-                      className=" mb-auto fw-bold fs-4 m-4"
+                    <div
+                      style={{ paddingBottom: "80%", backgroundColor: "red" }}
+                      onClick={handleDetail.bind(null, item.id)}
                     >
-                      {item.title}
-                    </Label>
+                      <h1
+                        //   onClick={listItem}
+                        style={{
+                          cursor: "pointer",
+                        }}
+                        className=" mb-auto fw-bold fs-4 m-4"
+                      >
+                        {item.title}
+                      </h1>
+                    </div>
                     {/* <Row className='d-flex'> */}
                     <span className="fs-5 mx-4 d-flex justify-content-between mb-4">
                       {formatDate(item.created_at)}
