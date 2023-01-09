@@ -16,7 +16,7 @@ import {
   setRedirect,
 } from "../../redux/todosSlicer";
 
-const Home = () => {
+const LandingPage = () => {
   const { activity } = useSelector((state) => state.todosSlicer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -141,7 +141,7 @@ const Home = () => {
                     }}
                   >
                     <div
-                      style={{ paddingBottom: "80%", backgroundColor: "red" }}
+                      style={{ paddingBottom: "80%"}}
                       onClick={handleDetail.bind(null, item.id)}
                     >
                       <h1
@@ -179,4 +179,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default LandingPage;

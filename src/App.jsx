@@ -1,10 +1,10 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
 import './App.css';
-import Home from './components/Home';
+import LandingPage from './components/pages/LandingPage';
 import Navbar from './components/Navbar';
 import { Route, Routes, Navigate } from "react-router-dom";
-import ListItems from './components/pages/listItem';
+import DetailPage from './components/pages/DetailPage';
 import { useSelector } from 'react-redux';
 
 function App() {
@@ -16,9 +16,9 @@ function App() {
       <Navbar />
       <Col className='my-5'>
         <Routes>
-          < Route exact path="/" element={<Home />} />
+          < Route exact path="/" element={<LandingPage />} />
           {/* < Route exact path="/Tambah-Activity" element={<AddTodoList />} /> */}
-          < Route exact path="/List-Items/:id" element={redirect ?<ListItems /> : <Navigate to="/" />} />
+          < Route exact path="/List-Items/:id" element={redirect ?<DetailPage /> : <Navigate to="/" />} />
         </Routes>
       </Col>
     </Col>

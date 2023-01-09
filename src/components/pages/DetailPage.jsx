@@ -29,7 +29,7 @@ import {
 import "./detailPage.css";
 import { DeleteIcon } from "../../assets";
 
-const ListItems = () => {
+const DetailPage = () => {
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
@@ -329,4 +329,4 @@ const ListItems = () => {
   );
 };
 
-export default ListItems;
+export default DetailPage;
